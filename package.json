@@ -19,5 +19,12 @@
   "bugs": {
     "url": "https://github.com/sshh1382/ToDoList/issues"
   },
-  "homepage": "https://github.com/sshh1382/ToDoList#readme"
+  "homepage": "https://github.com/sshh1382/ToDoList#readme",
+  "devDependencies": {
+    "@types/node": "^18.11.8"
+  },
+  "dependencies": {
+    "chalk": "^5.1.2",
+    "dotenv": "^16.0.3"
+  }
 }
