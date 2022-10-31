@@ -1,0 +1,23 @@
+{
+  "name": "todolist",
+  "version": "1.0.0",
+  "description": "To Do List Project with Node.JS",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/sshh1382/ToDoList.git"
+  },
+  "keywords": [
+    "ToDoList",
+    "Node.Js"
+  ],
+  "author": "Soroush Habibi",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/sshh1382/ToDoList/issues"
+  },
+  "homepage": "https://github.com/sshh1382/ToDoList#readme"
+}
