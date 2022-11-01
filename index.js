@@ -1,5 +1,6 @@
 import chalk from 'chalk';
-import DB from "./db.js";
+// import DB from "./db.js";
+import Task from './task.js'
 import dotenv from 'dotenv';
 dotenv.config();
 
@@ -33,7 +34,7 @@ const errText = chalk.redBright.bold;
 // }
 
 // try {
-//     console.log(DB.editTask(4, "book5", true));
+//     console.log(DB.editTask(2, "book2", true));
 // } catch (e) {
 //     console.log(e.message);
 // }
@@ -49,3 +50,21 @@ const errText = chalk.redBright.bold;
 // } catch (e) {
 //     console.log(errText(e.message));
 // }
+
+// const task1 = new Task("task1", true);
+// console.log(task1);
+// task1.save();
+// console.log(task1);
+// task1.title = "task2";
+// task1.completed = false;
+// task1.save();
+// console.log(task1);
+// task1.completed = true;
+// task1.save();
+// console.log(task1);
+
+// const task1 = Task.searchElementById(2);
+// console.log(task1);
+// task1.title = "Learn Node.Js";
+// task1.save();
+// console.log(task1);

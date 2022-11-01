@@ -97,9 +97,10 @@ export default class DB {
         });
 
         try {
+            const temp = data[data.length - 1].id;
             data = JSON.stringify(data);
             fs.writeFileSync(process.env.DB_FILE, data);
-            return true;
+            return temp;
         } catch (e) {
             throw new Error("Can't write on DB file");
         }

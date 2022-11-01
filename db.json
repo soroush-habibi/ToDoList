@@ -1,12 +1,17 @@
 [
     {
         "id": 1,
-        "title": "book1",
+        "title": "Learn Node.Js",
         "completed": true
     },
     {
         "id": 2,
         "title": "book2",
-        "completed": false
+        "completed": true
+    },
+    {
+        "id": 3,
+        "title": "task2",
+        "completed": true
     }
 ]
