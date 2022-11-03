@@ -84,11 +84,20 @@ export default class Task {
         }
     }
 
-    static allData(rawList = false) {
+    static allData(rawList = false, bool = false) {
         const items = DB.allData();
         let data = [];
 
         if (rawList) {
+            if (bool) {
+                for (let item of items) {
+                    if (item.completed) {
+                        item.completed = "true";
+                    } else {
+                        item.completed = "false";
+                    }
+                }
+            }
             return items;
         }
 

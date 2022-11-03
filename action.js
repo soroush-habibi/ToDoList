@@ -1,7 +1,10 @@
 import Task from "./task.js";
 import DB from "./db.js";
 import inquirer from "inquirer";
-import chalk from "chalk"
+import chalk from "chalk";
+import { stringify, parse } from "csv";
+import fs, { write } from 'fs';
+import axios from 'axios';
 
 const warn = chalk.yellowBright.bold;
 const success = chalk.greenBright.bold;
@@ -153,6 +156,92 @@ export default class Action {
             }
         } else {
             console.log(warn("Canceled"));
+        }
+    }
+
+    static export() {
+        try {
+            const data = Task.allData(true, true);
+            const writable = fs.createWriteStream('./output.csv');
+            stringify(data, { header: true }, (err, result) => {
+                if (!err) {
+                    writable.write(result);
+                    writable.end();
+                } else {
+                    console.log(err.message);
+                }
+            });
+        } catch (e) {
+            console.log(e.message);
+        }
+    }
+
+    static async import() {
+
+        const answer = await inquirer.prompt([
+            {
+                type: "input",
+                name: "filename",
+                message: "Enter a filename to import:"
+            }
+        ]);
+
+        try {
+            const inputfile = fs.readFileSync(answer.filename, "utf-8");
+            parse(inputfile, { columns: true }, (err, result) => {
+                if (!err) {
+                    for (let item of result) {
+                        item.id = Number(item.id);
+                        if (item.completed === 'true') {
+                            item.completed = true;
+                        } else {
+                            item.completed = false;
+                        }
+                    }
+                    fs.writeFileSync("./db.json", JSON.stringify(result));
+                } else {
+                    console.log(err.message);
+                }
+            });
+        } catch (e) {
+            console.log(e.message);
+        }
+    }
+
+    static async download() {
+        const answer = await inquirer.prompt([
+            {
+                type: "input",
+                name: "url",
+                message: "Enter full url of your csv file:",
+            }
+        ]);
+
+        const config = {
+            url: answer.url,
+            method: "get"
+        }
+
+        try {
+            const result = await axios(config);
+            parse(result.data, { columns: true }, (err, result) => {
+                if (!err) {
+                    for (let item of result) {
+                        item.id = Number(item.id);
+                        if (item.completed === 'true') {
+                            item.completed = true;
+                        } else {
+                            item.completed = false;
+                        }
+                    }
+                    fs.writeFileSync("./db.json", JSON.stringify(result));
+                    this.list();
+                } else {
+                    console.log(err.message);
+                }
+            });
+        } catch (e) {
+            console.log(e.message);
         }
     }
 }

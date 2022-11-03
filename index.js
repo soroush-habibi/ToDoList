@@ -1,11 +1,12 @@
 import chalk from 'chalk';
-// import DB from "./db.js";
-import Task from './task.js'
 import Action from './action.js'
 import dotenv from 'dotenv';
+import DB from './db.js';
 dotenv.config();
 
 console.clear();
+
+DB.createDB();
 
 const okText = chalk.greenBright.bold;
 const errText = chalk.redBright.bold;
@@ -41,6 +42,15 @@ if (command) {
             case commands[4]:
                 Action.edit();
                 break;
+            case commands[5]:
+                Action.export();
+                break;
+            case commands[6]:
+                Action.import();
+                break;
+            case commands[7]:
+                Action.download();
+                break;
         }
     } else {
         console.log("unknown command");
@@ -50,63 +60,3 @@ if (command) {
 List of available commands:
 ${okText(commands.join("\n"))}`);
 }
-
-// try {
-//     if (DB.createDB()) {
-//         console.log(okText("DB created sucessfully"));
-//     } else {
-//         console.log(errText("DB already exists"));
-//     }
-// } catch (e) {
-//     console.log(errText(e.message));
-// }
-
-// try {
-//     console.log(DB.searchElementById(2));
-//     console.log(DB.searchElementByTitle("book1"));
-//     console.log(DB.allData());
-// } catch (e) {
-//     console.log(e.message);
-// }
-
-// try {
-//     DB.addTask("book6", false);
-// } catch (e) {
-//     console.log(e.message);
-// }
-
-// try {
-//     console.log(DB.editTask(2, "book2", true));
-// } catch (e) {
-//     console.log(e.message);
-// }
-
-// try {
-//     console.log(DB.deleteTaskById(4));
-// } catch (e) {
-//     console.log(errText(e.message));
-// }
-
-// try {
-//     DB.importData("[{\"id\": 1, \"title\": \"book1\",   \"completed\": true}, {\"id\": 2,\"title\": \"book2\",\"completed\": false}]");
-// } catch (e) {
-//     console.log(errText(e.message));
-// }
-
-// const task1 = new Task("task1", true);
-// console.log(task1);
-// task1.save();
-// console.log(task1);
-// task1.title = "task2";
-// task1.completed = false;
-// task1.save();
-// console.log(task1);
-// task1.completed = true;
-// task1.save();
-// console.log(task1);
-
-// const task1 = Task.searchElementById(2);
-// console.log(task1);
-// task1.title = "Learn Node.Js";
-// task1.save();
-// console.log(task1);
