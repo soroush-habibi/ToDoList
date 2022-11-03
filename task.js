@@ -84,9 +84,13 @@ export default class Task {
         }
     }
 
-    static allData() {
+    static allData(rawList = false) {
         const items = DB.allData();
         let data = [];
+
+        if (rawList) {
+            return items;
+        }
 
         if (items) {
             for (let item of items) {

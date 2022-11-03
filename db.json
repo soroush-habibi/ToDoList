@@ -1,16 +1,11 @@
 [
     {
         "id": 1,
-        "title": "Learn Node.Js",
-        "completed": true
+        "title": "task1",
+        "completed": false
     },
     {
         "id": 2,
-        "title": "book2",
-        "completed": true
-    },
-    {
-        "id": 3,
         "title": "task2",
         "completed": true
     }

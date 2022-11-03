@@ -1,6 +1,7 @@
 import chalk from 'chalk';
 // import DB from "./db.js";
 import Task from './task.js'
+import Action from './action.js'
 import dotenv from 'dotenv';
 dotenv.config();
 
@@ -8,6 +9,47 @@ console.clear();
 
 const okText = chalk.greenBright.bold;
 const errText = chalk.redBright.bold;
+
+const command = process.argv[2];
+
+const commands = [
+    "list",
+    "add",
+    "delete",
+    "delete-all",
+    "edit",
+    "export",
+    "import",
+    "download"
+]
+
+if (command) {
+    if (commands.includes(command)) {
+        switch (command) {
+            case commands[0]:
+                Action.list();
+                break;
+            case commands[1]:
+                Action.add();
+                break;
+            case commands[2]:
+                Action.delete();
+                break;
+            case commands[3]:
+                Action.deleteAll();
+                break;
+            case commands[4]:
+                Action.edit();
+                break;
+        }
+    } else {
+        console.log("unknown command");
+    }
+} else {
+    console.log(`${errText("You must enter a command")}
+List of available commands:
+${okText(commands.join("\n"))}`);
+}
 
 // try {
 //     if (DB.createDB()) {

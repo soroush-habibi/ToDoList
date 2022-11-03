@@ -90,14 +90,27 @@ export default class DB {
             }
         }
 
-        data.push({
-            id: (data[data.length - 1].id + 1),
-            title: title,
-            completed: completed
-        });
+        if (data.length === 0) {
+            data.push({
+                id: 1,
+                title: title,
+                completed: completed
+            });
+        } else {
+            data.push({
+                id: (data[data.length - 1].id + 1),
+                title: title,
+                completed: completed
+            });
+        }
 
+        let temp;
         try {
-            const temp = data[data.length - 1].id;
+            if (data.length === 0) {
+                temp = 1;
+            } else {
+                temp = data[data.length - 1].id;
+            }
             data = JSON.stringify(data);
             fs.writeFileSync(process.env.DB_FILE, data);
             return temp;
