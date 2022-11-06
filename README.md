@@ -16,16 +16,9 @@ Now open your terminal in source folder and execute below command:
 <pre>npm install</pre>
 </hr>
 <h2>How to use this package?</h2>
-List of commands:
+Type below command in terminal:
 <pre>
-node index list
-node index add
-node index delete
-node index delete-all
-node index edit
-node index export
-node index import
-node index download
+node index
 </pre>
-You can use these commands to add , edit and delete your tasks in a JSON file</br>
+You will see list of commands you can select.you can see tasks , add , delete or edit them.</br>
 You can also export JSON file to CSV file or import CSV file to JSON or download a CSV file and import it

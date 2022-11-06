@@ -2,6 +2,7 @@ import chalk from 'chalk';
 import Action from './action.js'
 import dotenv from 'dotenv';
 import DB from './db.js';
+import inquirer from 'inquirer';
 dotenv.config();
 
 console.clear();
@@ -10,8 +11,6 @@ DB.createDB();
 
 const okText = chalk.greenBright.bold;
 const errText = chalk.redBright.bold;
-
-const command = process.argv[2];
 
 const commands = [
     "list",
@@ -24,9 +23,19 @@ const commands = [
     "download"
 ]
 
-if (command) {
-    if (commands.includes(command)) {
-        switch (command) {
+const answers = await inquirer.prompt([
+    {
+        type: "rawlist",
+        name: "command",
+        message: "Choose a command:",
+        choices: ["list", "add", "delete", "delete-all", "edit", "export", "import", "download"],
+        loop: false
+    }
+]);
+
+if (answers.command) {
+    if (commands.includes(answers.command)) {
+        switch (answers.command) {
             case commands[0]:
                 Action.list();
                 break;
